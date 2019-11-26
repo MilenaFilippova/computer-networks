@@ -48,16 +48,16 @@ int main()
 	}
 
 	cout<<"n= " <<n<<" f="<<f<< " e= "<<e <<" d= " <<d<<endl;;
-    //Сгенерированные ключи.
+    	//Сгенерированные ключи.
 	cout << "Open key(e,n): "<< e <<" , "<< n <<";"<<endl<<"Close key(d,n): " << d <<" , "<<n<<endl;
 
 	system("pause");
     return 0;
 }
 
+
+
 //Алгоритм Евклида. Алгоритм для нахождения наибольшего общего делителя двух целых чисел. 
-
-
 int evkl(int a, int b)
 {
 	int c;
@@ -79,8 +79,8 @@ bool TestIsPrime (int n)
 	{
         if (n%i==0)
 	{
-			isPrime = false;
-			break;
+		isPrime = false;
+		break;
         }
     }
 	return isPrime;
