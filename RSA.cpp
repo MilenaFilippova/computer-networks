@@ -5,12 +5,19 @@
 #include <cstdlib>
 #include <iomanip>
 
+
+
+
 using namespace std;
 
 bool TestIsPrime (int n);
 int evkl(int a, int b);
+int mycod(int M, int E, int N);
+int mydecod(int C, int D, int N);
+
 int main()
 {
+	setlocale(LC_ALL,"Russian");
 	//два различных случайных простых числа p и q заданного размера
 	int p=0, q=0, n=0, f=0;
 	int firs_value = 50 , last_value = 1000 ;
@@ -48,16 +55,58 @@ int main()
 	}
 
 	cout<<"n= " <<n<<" f="<<f<< " e= "<<e <<" d= " <<d<<endl;;
-    	//Сгенерированные ключи.
+    //Сгенерированные ключи.
 	cout << "Open key(e,n): "<< e <<" , "<< n <<";"<<endl<<"Close key(d,n): " << d <<" , "<<n<<endl;
 
+	const int size_text=5;
+	char* text=new char[size_text];
+	unsigned int* cod_text=new unsigned int[size_text+20];
+	cod_text=0;
+
+	cout << "Enter your text:"<<endl;
+	cin.get(text, size_text);
+	
+	//кодирование
+	unsigned int *CryptoText = new unsigned int [size_text];
+	int b=301;
+	for(int i=0;i<size_text;i++)
+	{
+		int ASCIIcode = (int)text[i]+b;
+		CryptoText[i]=mycod(ASCIIcode, e, n);
+		cout<<"Cod text: "<<(char)CryptoText[i]<<"  CryptoText[i]="<<CryptoText[i]<<endl;
+		b++;
+	}
+
+	
+	
+	unsigned int* decod_text=new unsigned  int[size_text];
+	//cout<<"Cod text: "<<decod_text<<endl;
+
+	//декодирование
+	b = 301;
+	for(int i=0;i<size_text;i++)
+	{
+		int M=mydecod(CryptoText[i], d, n);
+		M=M-b;
+		decod_text[i]=M;
+		b++;
+		cout<<"Decod text: "<<(char)decod_text[i]<<"  decod_text[i]= "<<decod_text[i]<<endl;
+		
+	}
+
+
+	delete [] text;
+	delete [] cod_text;
+	delete [] CryptoText;
 	system("pause");
     return 0;
 }
 
+//Алгоритм Евклида. Алгоритм для нахождения наибольшего
+//общего делителя двух целых чисел. Используется для проверки
+//чисел на взаимопростоту.
 
 
-//Алгоритм Евклида. Алгоритм для нахождения наибольшего общего делителя двух целых чисел. 
 int evkl(int a, int b)
 {
 	int c;
@@ -78,10 +127,56 @@ bool TestIsPrime (int n)
 	for (int i=2; i<=sqrt((float)abs(n)); i++)
 	{
         if (n%i==0)
-	{
-		isPrime = false;
-		break;
+		{
+			isPrime = false;
+			break;
         }
     }
 	return isPrime;
+}
+
+
+//Взять открытый ключ (e,n)
+//Создать случайный сеансовый ключ m
+/*
+int mycod(int M, int E, int N)
+{
+	int C=M;
+	for(int i=0;i<=E;i++)
+	{
+		//Зашифровать сеансовый ключ с использованием открытого ключа  m  в степени e
+		C=C*M;
+	}
+    C=C%N;
+
+    return C;
+}
+*/
+int mycod(int M, int E, int N)
+{
+	
+	int C=1;
+	for(int i=0;i<=E;i++)
+	{
+		//Зашифровать сеансовый ключ с использованием открытого ключа  m  в степени e
+		C = C*M;
+		C = C%N;
+	}
+
+    return C;
+}
+
+
+
+
+
+int mydecod(int C, int D, int N)
+{
+	int M=1;
+	for(int i=0;i<=D;i++)
+	{
+		M = M*C;
+		M = M%N;
+	}
+    return M;
 }
