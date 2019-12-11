@@ -60,20 +60,19 @@ int main()
 
 	const int size_text=5;
 	char* text=new char[size_text];
-	unsigned int* cod_text=new unsigned int[size_text+20];
 	cod_text=0;
 
 	cout << "Enter your text:"<<endl;
 	cin.get(text, size_text);
 	
 	//кодирование
-	unsigned int *CryptoText = new unsigned int [size_text];
+	unsigned int *cod_text = new unsigned int [size_text];
 	int b=301;
 	for(int i=0;i<size_text;i++)
 	{
 		int ASCIIcode = (int)text[i]+b;
-		CryptoText[i]=mycod(ASCIIcode, e, n);
-		cout<<"Cod text: "<<(char)CryptoText[i]<<"  CryptoText[i]="<<CryptoText[i]<<endl;
+		cod_text[i]=mycod(ASCIIcode, e, n);
+		cout<<"Cod text: "<<(char)cod_text[i]<<"  cod_text[i]="<<cod_text[i]<<endl;
 		b++;
 	}
 
