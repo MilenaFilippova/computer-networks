@@ -85,7 +85,7 @@ int main()
 	b = 301;
 	for(int i=0;i<size_text;i++)
 	{
-		int M=mydecod(CryptoText[i], d, n);
+		int M=mydecod(cod_text[i], d, n);
 		M=M-b;
 		decod_text[i]=M;
 		b++;
@@ -96,7 +96,7 @@ int main()
 
 	delete [] text;
 	delete [] cod_text;
-	delete [] CryptoText;
+	delete [] decod_text;
 	system("pause");
     return 0;
 }
