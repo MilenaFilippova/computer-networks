@@ -79,7 +79,6 @@ int main()
 	
 	
 	unsigned int* decod_text=new unsigned  int[size_text];
-	//cout<<"Cod text: "<<decod_text<<endl;
 
 	//декодирование
 	b = 301;
@@ -137,20 +136,6 @@ bool TestIsPrime (int n)
 
 //Взять открытый ключ (e,n)
 //Создать случайный сеансовый ключ m
-/*
-int mycod(int M, int E, int N)
-{
-	int C=M;
-	for(int i=0;i<=E;i++)
-	{
-		//Зашифровать сеансовый ключ с использованием открытого ключа  m  в степени e
-		C=C*M;
-	}
-    C=C%N;
-
-    return C;
-}
-*/
 int mycod(int M, int E, int N)
 {
 	
