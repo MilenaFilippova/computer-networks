@@ -84,9 +84,9 @@ void create_number(string str)
 	for(int i = 31; i<size_str; i++)	//идем к мак адресу
 	{
 							
-		if(str[i]!=' ')
+		if(str[i]!=' ')	//пока не встретили пробел и не закончился адрес
 		{
-			if(str[i]!='.')
+			if(str[i]!='.')	//пока одно и то же число - обрабатываем
 			{
 				number=number*10+((int)str[i])-'0';	//накапливаю многозначное число
 			}
@@ -96,7 +96,7 @@ void create_number(string str)
 				number=0;
 			}				
 		}
-		else
+		else	//если встретили точку обрабатываем след число
 		{
 			break;
 		}
