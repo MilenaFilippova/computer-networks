@@ -145,7 +145,7 @@ int main()
 	  }
     cout<<"N="<<size<<" . First vert="<<first<<endl;
     //выводим растояние от этой вершины до каждой
-    for (int j = 0; j <= size; j++)	// проверяем для нее все смежные вершины
+    for (int j = 0; j <= size; j++)
     { 
       cout<<"lit= "<<ver[j].lit<<" id="<<ver[j].id<<" len="<<ver[j].len<<endl;
     }
